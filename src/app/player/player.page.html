@@ -7,18 +7,19 @@
   </ion-toolbar>
 </ion-header>
   
-<ion-content>
+<ion-content padding>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
-  <ion-item *ngFor="let player of players">
-    <ion-label>
-      {{ player.nick }} 
-    </ion-label>
-    <ion-icon name="star-outline"></ion-icon>
-    {{ player.stars }}
-  </ion-item>
+  <ion-card>
+    <ion-item *ngFor="let player of players">
+      <ion-label>
+        {{ player.nick }} 
+      </ion-label>
+      <ion-icon name="star-outline"></ion-icon>
+      {{ player.stars }}
+    </ion-item>
+  </ion-card>
 </ion-content>

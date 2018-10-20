@@ -4,22 +4,21 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'game',
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
   },
   { 
     path: 'game', 
     loadChildren: './game/game.module#GamePageModule' 
   },
-  { path: 'player', loadChildren: './player/player.module#PlayerPageModule' }
+  { 
+    path: 'player', 
+    loadChildren: './player/player.module#PlayerPageModule' 
+  },
+  { 
+    path: 'auth', 
+    loadChildren: './auth/auth.module#AuthModule' 
+  }
 ];
 
 @NgModule({

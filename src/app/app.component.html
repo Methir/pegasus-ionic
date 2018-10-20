@@ -8,12 +8,26 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item [routerDirection]="'root'" [routerLink]="['/game']">
+              <ion-icon slot="start" name="home"></ion-icon>
+              <ion-label>Jogos</ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="['/player']">
+              <ion-icon slot="start" name="list"></ion-icon>
+              <ion-label>Jogadores</ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="['/auth/register']">
+              <ion-icon slot="start" name="person-add"></ion-icon>
+              <ion-label>Registrar</ion-label>
+            </ion-item>
+            <ion-item [routerDirection]="'root'" [routerLink]="['/auth/login']">
+              <ion-icon slot="start" name="key"></ion-icon>
+              <ion-label>Entrar</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon slot="start" name="walk"></ion-icon>
+              <ion-label>Sair</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
