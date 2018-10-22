@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login/login.page';
 import { RegisterPage } from './register/register.page';
+import { UserPage } from './user/user.page';
 
 const routes: Routes = [
   {
@@ -14,8 +15,8 @@ const routes: Routes = [
     component: LoginPage
   },
   {
-    path: 'register',
-    component: RegisterPage
+    path: 'user',
+    component: UserPage
   }
 ];
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   ],
   declarations: [
     LoginPage,
+    UserPage,
     RegisterPage
   ]
 })

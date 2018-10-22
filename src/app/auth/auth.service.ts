@@ -44,4 +44,8 @@ export class AuthService {
     this.authUser.next(null);
   }
 
+  getUsers(): Observable<any> {
+    return this.http.get<any>(`${this.helperService.baseUrl}/users`);
+  }
+
 }

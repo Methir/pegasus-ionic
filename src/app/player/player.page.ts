@@ -1,3 +1,5 @@
+import { AuthService } from './../auth/auth.service';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './player.service';
 
@@ -7,9 +9,15 @@ import { PlayerService } from './player.service';
 })
 export class PlayerPage implements OnInit {
 
+  token: any = null;
+  authUserSubscription: Subscription;
   players: any[];
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService,
+              private authService: AuthService) {
+    this.authUserSubscription = this.authService.seeAuthUser
+    .subscribe((token: any) => this.token = token);
+  }
 
   ngOnInit() {
     this.playerService.getPlayers().subscribe(
