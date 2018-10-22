@@ -15,27 +15,33 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private helperService: HelperService  ) { 
-
+    this.authUser = new BehaviorSubject(this.getToken());
+    this.seeAuthUser = this.authUser.asObservable(); 
   }
 
   setToken(token: any): void {
-  
+    localStorage.setItem('pegasus_token', JSON.stringify(token));
   }
 
-  getToken(): void {
-
+  getToken() {
+    let token = localStorage.getItem('pegasus_token');
+    if (!token) {
+      return null;
+    }
+    return JSON.parse(localStorage.getItem('pegasus_token'));
   }
 
   register(values): void {
 
   }
 
-  authenticate(values): void {
-
+  authenticate(values): Observable<any> {
+    return this.http.post<any>(`${this.helperService.baseUrl}/login`, values);
   }
 
   logout(): void {
-
+    localStorage.removeItem('bagda_token');
+    this.authUser.next(null);
   }
 
 }
