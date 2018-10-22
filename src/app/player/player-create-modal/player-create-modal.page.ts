@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-@Component({ 
-  selector: 'app-register',
-  templateUrl: './register.page.html',
+@Component({  
+  selector: 'app-player-create-modal',
+  templateUrl: './player-create-modal.page.html',
 })
-export class RegisterPage implements OnInit {
+export class PlayerCreateModalPage implements OnInit {
 
   constructor(private modalController: ModalController) { }
 

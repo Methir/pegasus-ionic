@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PlayerPage } from './player.page';
+import { PlayerCreateModalPage } from './player-create-modal/player-create-modal.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PlayerPage]
+  entryComponents: [
+    PlayerCreateModalPage
+  ],
+  declarations: [
+    PlayerPage,
+    PlayerCreateModalPage
+  ]
 })
 export class PlayerPageModule {}

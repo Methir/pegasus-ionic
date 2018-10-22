@@ -9,7 +9,7 @@
   
 <ion-content padding>
   <ion-fab *ngIf="token" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="presentPlayerCreateModal()"> 
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -1,6 +1,8 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { ModalController } from '@ionic/angular';
+import { RegisterPage } from '../register/register.page';
 
 @Component({ 
   selector: 'app-user',
@@ -12,7 +14,8 @@ export class UserPage implements OnInit {
   authUserSubscription: Subscription;
   users: any;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private modalController: ModalController) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
   } 
@@ -28,6 +31,13 @@ export class UserPage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  async presentRegisterModal() {
+    const modal = await this.modalController.create({
+      component: RegisterPage
+    });
+    return await modal.present();
   }
 
 }

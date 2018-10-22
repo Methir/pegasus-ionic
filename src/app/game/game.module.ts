@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { GamePage } from './game.page';
+import { GameCreateModalPage } from './game-create-modal/game-create-modal.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,12 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [GamePage]
+  entryComponents: [
+    GameCreateModalPage,
+  ],
+  declarations: [
+    GamePage,
+    GameCreateModalPage
+  ]
 })
 export class GamePageModule {}

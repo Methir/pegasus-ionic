@@ -1,7 +1,9 @@
+import { ModalController } from '@ionic/angular';
 import { AuthService } from './../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './player.service';
+import { PlayerCreateModalPage } from './player-create-modal/player-create-modal.page';
 
 @Component({
   selector: 'app-player',
@@ -14,7 +16,8 @@ export class PlayerPage implements OnInit {
   players: any[];
 
   constructor(private playerService: PlayerService,
-              private authService: AuthService) {
+              private authService: AuthService, 
+              private modalController: ModalController  ) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
   }
@@ -29,6 +32,13 @@ export class PlayerPage implements OnInit {
         console.log(err)
       }
     )
+  }
+
+  async presentPlayerCreateModal() {
+    const modal = await this.modalController.create({
+      component: PlayerCreateModalPage
+    });
+    return await modal.present();
   }
 
 }
