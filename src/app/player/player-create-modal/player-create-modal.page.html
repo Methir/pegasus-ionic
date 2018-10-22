@@ -12,15 +12,17 @@
       <ion-card-title>Criar Jogador</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Nome Jogador</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Nome Completo</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-button expand="full">Enviar</ion-button>
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()"> 
+        <ion-item>
+          <ion-label position="floating">Nome Jogador</ion-label>
+          <ion-input type="text" formControlName="nick"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nome Completo</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full">Enviar</ion-button>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>

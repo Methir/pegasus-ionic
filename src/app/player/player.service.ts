@@ -15,4 +15,8 @@ export class PlayerService {
     return this.http.get(`${this.helperService.baseUrl}/players`)
   }
 
+  createPlayer(values): Observable<any> {
+    return this.http.post<any>(`${this.helperService.baseUrl}/players/register`, values);
+  }
+
 }
