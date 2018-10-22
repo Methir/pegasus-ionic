@@ -25,9 +25,9 @@ export class GamePage implements OnInit {
 
   ngOnInit() {
     this.gameService.getGames().subscribe(
-      (games) => {
-        console.log(games)
-        this.games = games;
+      (response) => {
+        console.log(response)
+        this.games = response.data;
       },  
       (err) => {
         console.log(err)

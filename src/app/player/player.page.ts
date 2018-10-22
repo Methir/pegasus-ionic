@@ -24,9 +24,9 @@ export class PlayerPage implements OnInit {
 
   ngOnInit() {
     this.playerService.getPlayers().subscribe(
-      (players) => {
-        console.log(players)
-        this.players = players;
+      (response) => {
+        console.log(response)
+        this.players = response.data;
       },  
       (err) => {
         console.log(err)

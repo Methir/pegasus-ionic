@@ -23,9 +23,9 @@ export class UserPage implements OnInit {
   ngOnInit() {
     this.authService.getUsers()
     .subscribe(
-      (users: any) => {
-        console.log(users);
-        this.users = users;
+      (response: any) => {
+        console.log(response);
+        this.users = response.data;
       },
       (err: any) => {
         console.log(err);

@@ -44,10 +44,10 @@ export class LoginPage implements OnInit {
     console.log(values);
     this.authService.authenticate(values)
     .subscribe(
-      (token: any) => {
-        console.log(token);
-        this.authService.setToken(token);
-        this.authService.authUser.next(token);
+      (response: any) => {
+        console.log(response);
+        this.authService.setToken(response.data);
+        this.authService.authUser.next(response.data);
         this.router.navigate(['game']);
       },
       (err: any) => {
