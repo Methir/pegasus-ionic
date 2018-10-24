@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-fab *ngIf="token" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="presentRegisterModal()">
+    <ion-fab-button (click)="presentRegisterModal()" color="success">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -22,9 +22,24 @@
             <ion-card-title>{{ user.nick }}</ion-card-title>
             <ion-card-subtitle>{{ user.name }}</ion-card-subtitle>
           </ion-card-header>
-          <ion-item>
-            <ion-label>Email: {{ user.email }}</ion-label>
-          </ion-item>
+
+            <ion-fab *ngIf="token" vertical="top" horizontal="end">
+              <ion-fab-button mini>
+                <ion-icon name="more"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-list side="start">
+                <ion-fab-button color="primary">
+                  <ion-icon name="create"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-button color="danger">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-fab-button>
+              </ion-fab-list>
+            </ion-fab>   
+
+            <ion-item>
+              <ion-label>Email: {{ user.email }}</ion-label>
+            </ion-item>
         </ion-card>
       </ion-col>
     </ion-row>
