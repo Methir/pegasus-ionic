@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ModalController } from '@ionic/angular';
 import { RegisterPage } from '../register/register.page';
+import { UserUpdateModalPage } from './user-update-modal/user-update-modal.page';
 
 @Component({ 
   selector: 'app-user',
@@ -33,9 +34,19 @@ export class UserPage implements OnInit {
     );
   }
 
-  async presentRegisterModal() {
+  async presentCreateUserModal() {
     const modal = await this.modalController.create({
       component: RegisterPage
+    });
+    return await modal.present();
+  }
+
+  async presentUpdateUserModal(user) {
+    const modal = await this.modalController.create({
+      component: UserUpdateModalPage,
+      componentProps: {
+        user: user
+      }
     });
     return await modal.present();
   }

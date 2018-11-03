@@ -35,6 +35,10 @@ export class AuthService {
     return this.http.post<any>(`${this.helperService.baseUrl}/users`, values);
   }
 
+  updateUser(values): Observable<any> {
+    return this.http.put<any>(`${this.helperService.baseUrl}/users`, values);
+  }
+
   authenticate(values): Observable<any> {
     return this.http.post<any>(`${this.helperService.baseUrl}/login`, values);
   }

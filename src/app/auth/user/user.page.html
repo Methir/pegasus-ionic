@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <ion-fab *ngIf="token" vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="presentRegisterModal()" color="success">
+    <ion-fab-button (click)="presentCreateUserModal()" color="success">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -28,7 +28,7 @@
                 <ion-icon name="more"></ion-icon>
               </ion-fab-button>
               <ion-fab-list side="start">
-                <ion-fab-button color="primary">
+                <ion-fab-button color="primary" (click)="presentUpdateUserModal(user)">
                   <ion-icon name="create"></ion-icon>
                 </ion-fab-button>
                 <ion-fab-button color="danger">

@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login/login.page';
 import { RegisterPage } from './register/register.page';
 import { UserPage } from './user/user.page';
+import { UserUpdateModalPage } from './user/user-update-modal/user-update-modal.page';
 
 const routes: Routes = [
   {
@@ -28,12 +29,14 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    RegisterPage
+    RegisterPage,
+    UserUpdateModalPage
   ],
   declarations: [
     LoginPage,
     UserPage,
-    RegisterPage
+    RegisterPage,
+    UserUpdateModalPage
   ]
 })
 export class AuthModule {}
