@@ -31,8 +31,8 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('pegasus_token'));
   }
 
-  register(values): void {
-
+  createUser(values): Observable<any> {
+    return this.http.post<any>(`${this.helperService.baseUrl}/users`, values);
   }
 
   authenticate(values): Observable<any> {
