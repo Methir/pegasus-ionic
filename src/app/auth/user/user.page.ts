@@ -22,6 +22,10 @@ export class UserPage implements OnInit {
   } 
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers() {
     this.authService.getUsers()
     .subscribe(
       (response: any) => {
@@ -38,6 +42,7 @@ export class UserPage implements OnInit {
     const modal = await this.modalController.create({
       component: RegisterPage
     });
+    modal.onWillDismiss().then(() => this.getUsers());
     return await modal.present();
   }
 
@@ -48,6 +53,7 @@ export class UserPage implements OnInit {
         user: user
       }
     });
+    modal.onWillDismiss().then(() => this.getUsers());
     return await modal.present();
   }
 
