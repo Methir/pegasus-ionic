@@ -1,9 +1,11 @@
-import { AuthService } from './../auth/auth.service';
-import { Subscription } from 'rxjs';
-import { GameService } from './game.service';
 import { Component, OnInit } from '@angular/core';
+
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+
 import { GameCreateModalPage } from './game-create-modal/game-create-modal.page';
+import { GameService } from './game.service';
+import { AuthService } from './../auth/auth.service';
 
 @Component({
   selector: 'app-game',
@@ -16,9 +18,9 @@ export class GamePage implements OnInit {
 
   games: any[];
 
-  constructor(private gameService: GameService,
-              private authService: AuthService,
-              private modalController: ModalController  ) {
+  constructor(  private gameService: GameService,
+                private authService: AuthService,
+                private modalController: ModalController  ) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
   }

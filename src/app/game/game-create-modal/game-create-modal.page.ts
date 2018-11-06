@@ -1,7 +1,9 @@
+import { Component, OnInit } from '@angular/core';
+
+import { ModalController } from '@ionic/angular';
+
 import { HelperService } from './../../shared/helper.service';
 import { GameService } from './../game.service';
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
 
 @Component({  
   selector: 'app-game-create-modal',
@@ -9,12 +11,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class GameCreateModalPage implements OnInit {
 
-  constructor(private modalController: ModalController,
-              private helperService: HelperService,
-              private gameService: GameService) { }
+  constructor(  private modalController: ModalController,
+                private helperService: HelperService,
+                private gameService: GameService  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   resetGames() {
     this.gameService.resetGames()
