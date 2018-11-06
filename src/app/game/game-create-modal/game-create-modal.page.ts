@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
@@ -22,9 +23,10 @@ export class GameCreateModalPage implements OnInit {
     this.gameService.resetGames()
     .subscribe(
       (response: HttpSuccessResponse) => {
+        this.dismiss();
         this.helperService.persistAlert("Jogos resetados com sucesso!");
       },
-      (err) => { 
+      (err: HttpErrorResponse) => { 
         this.helperService.persistAlert("Erro ao tentar resetar os jogos!");
       }
     );

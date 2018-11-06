@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
@@ -37,7 +38,7 @@ export class PlayerPage implements OnInit {
       (response: HttpSuccessResponse) => {
         this.players = response.data;
       },  
-      (err) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert("Falha ao mostrar jogadores!");
       }
     );
@@ -50,7 +51,7 @@ export class PlayerPage implements OnInit {
         this.helperService.persistAlert("Jogador deletado com sucesso!");
         this.getPlayers();
       },
-      (err) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert("Falha ao deletar jogador!");
       }
     );

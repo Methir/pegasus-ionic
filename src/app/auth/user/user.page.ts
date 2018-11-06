@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
@@ -38,7 +39,7 @@ export class UserPage implements OnInit {
       (response: HttpSuccessResponse) => {
         this.users = response.data;
       },
-      (err: any) => {
+      (err: HttpErrorResponse) => {
         console.log(err);
       }
     );
@@ -47,11 +48,11 @@ export class UserPage implements OnInit {
   deleteUser(user: User): void {
     this.userService.deleteUser(user)
     .subscribe(
-      (response) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert("Usuário deletado com sucesso!");
         this.getUsers();
       },
-      (err) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert("Falha ao deletar usuário!");
       }
     );

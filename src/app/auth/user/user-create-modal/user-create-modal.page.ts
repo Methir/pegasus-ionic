@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -58,7 +59,7 @@ export class UserCreateModalPage implements OnInit {
         this.helperService.persistAlert('Usuário cadastrado com sucesso');
         this.dismiss();
       },
-      (err: any) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert('Erro ao tentar acessar o sistema. Veja se errou algo, se não deu muito ruim. xD');
       }  
     )

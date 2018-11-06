@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -52,7 +53,7 @@ export class PlayerCreateModalPage implements OnInit {
         this.dismiss();
         this.helperService.persistAlert('Jodador cadastrado com sucesso!');
       },
-      (err) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert('Erro ao tentar cadastrar jodador!');
       }
     );

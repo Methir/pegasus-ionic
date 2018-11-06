@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
@@ -30,7 +31,7 @@ export class GamePage implements OnInit {
       (response: HttpSuccessResponse) => {
         this.games = response.data;
       },  
-      (err) => { }
+      (err: HttpErrorResponse) => { }
     )
   }
   

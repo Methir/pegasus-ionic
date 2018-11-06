@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -50,7 +51,7 @@ export class LoginPage implements OnInit {
         this.authService.authUser.next(response.data);
         this.router.navigate(['game']);
       },
-      (err: any) => {
+      (err: HttpErrorResponse) => {
         this.helperService.persistAlert('Erro ao tentar acessar o sistema. Veja se errou sua senha, se não deu muito ruim. xD');
       }  
     )
