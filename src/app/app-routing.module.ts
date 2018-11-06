@@ -16,8 +16,12 @@ const routes: Routes = [
     loadChildren: './player/player.module#PlayerPageModule' 
   },
   { 
-    path: 'auth', 
+    path: 'login', 
     loadChildren: './auth/auth.module#AuthModule' 
+  },
+  { 
+    path: 'user', 
+    loadChildren: './user/user.module#UserModule' 
   }
 ];
 

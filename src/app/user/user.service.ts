@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { HelperService } from '../../shared/helper.service';
-import { User, HttpSuccessResponse } from '../../shared/interface';
+import { HelperService } from '../shared/helper.service';
+import { User, HttpSuccessResponse } from '../shared/interface';
 
 @Injectable({
   providedIn: 'root'

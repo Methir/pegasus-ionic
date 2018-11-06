@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-import { HelperService } from './../../../shared/helper.service';
+import { HelperService } from './../../shared/helper.service';
 import { UserService } from '../user.service';
-import { User, HttpSuccessResponse } from '../../../shared/interface';
+import { User, HttpSuccessResponse } from '../../shared/interface';
 
-@Component({
+@Component({ 
   selector: 'app-user-create-modal',
   templateUrl: './user-create-modal.page.html',
 })

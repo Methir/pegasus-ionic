@@ -4,14 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 
-import { AuthService } from '../auth.service';
 import { UserUpdateModalPage } from './user-update-modal/user-update-modal.page';
-import { HelperService } from './../../shared/helper.service';
+import { HelperService } from './../shared/helper.service';
 import { UserCreateModalPage } from './user-create-modal/user-create-modal.page';
 import { UserService } from './user.service';
-import { User, Token, HttpSuccessResponse } from '../../shared/interface';
+import { User, Token, HttpSuccessResponse } from '../shared/interface';
+import { AuthService } from '../auth/auth.service';
 
-@Component({ 
+@Component({  
   selector: 'app-user',
   templateUrl: './user.page.html',
 })
