@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 
 import { PlayerService } from '../player.service';
 import { HelperService } from './../../shared/helper.service';
+import { Player, HttpSuccessResponse } from '../../shared/interface';
 
 @Component({  
   selector: 'app-player-update-modal',
@@ -12,7 +13,7 @@ import { HelperService } from './../../shared/helper.service';
 })
 export class PlayerUpdateModalPage implements OnInit {
  
-  player: any;
+  player: Player;
   forms: FormGroup;
 
   constructor(  private modalController: ModalController,
@@ -20,7 +21,7 @@ export class PlayerUpdateModalPage implements OnInit {
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = this.formBuilder.group({
       nick: [ this.player.nick, [
         Validators.required,
@@ -39,7 +40,7 @@ export class PlayerUpdateModalPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.forms.invalid) {
       this.helperService.persistAlert('Erro no formulário!');
     } else {
@@ -47,10 +48,10 @@ export class PlayerUpdateModalPage implements OnInit {
     }
   }
 
-  updatePlayer(values) {
-    this.playerService.updatePlayer(values)
+  updatePlayer(player: Player): void {
+    this.playerService.updatePlayer(player)
     .subscribe(
-      (response) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert('Jodador cadastrado com sucesso');
       },
       (err) => {
@@ -59,7 +60,7 @@ export class PlayerUpdateModalPage implements OnInit {
     );
   }
 
-  dismiss() {
+  dismiss(): void {
     this.modalController.dismiss();
   }
 

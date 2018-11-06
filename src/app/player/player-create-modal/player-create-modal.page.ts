@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 
 import { PlayerService } from '../player.service';
 import { HelperService } from './../../shared/helper.service';
+import { Player, HttpSuccessResponse } from '../../shared/interface';
 
 @Component({  
   selector: 'app-player-create-modal',
@@ -19,7 +20,7 @@ export class PlayerCreateModalPage implements OnInit {
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = this.formBuilder.group({
       nick: [ null, [
         Validators.required,
@@ -36,7 +37,7 @@ export class PlayerCreateModalPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.forms.invalid) {
       this.helperService.persistAlert('Erro no formulário!');
     } else {
@@ -44,10 +45,10 @@ export class PlayerCreateModalPage implements OnInit {
     }
   }
 
-  createPlayer(values) {
-    this.playerService.createPlayer(values)
+  createPlayer(player: Player): void {
+    this.playerService.createPlayer(player)
     .subscribe(
-      (response) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert('Jodador cadastrado com sucesso');
       },
       (err) => {
@@ -56,7 +57,7 @@ export class PlayerCreateModalPage implements OnInit {
     );
   }
 
-  dismiss() {
+  dismiss(): void {
     this.modalController.dismiss();
   }
 

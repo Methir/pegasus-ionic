@@ -8,6 +8,7 @@ import { AuthService } from './../auth/auth.service';
 import { PlayerService } from './player.service';
 import { PlayerCreateModalPage } from './player-create-modal/player-create-modal.page';
 import { PlayerUpdateModalPage } from './player-update-modal/player-update-modal.page';
+import { Token, Player, HttpSuccessResponse } from '../shared/interface';
 
 @Component({
   selector: 'app-player',
@@ -15,38 +16,37 @@ import { PlayerUpdateModalPage } from './player-update-modal/player-update-modal
 })
 export class PlayerPage implements OnInit {
 
-  token: any = null;
+  token: Token = null;
   authUserSubscription: Subscription;
-  players: any[];
+  players: Player[];
 
   constructor(  private playerService: PlayerService,
                 private authService: AuthService, 
                 private helperService: HelperService,
                 private modalController: ModalController  ) {
     this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: any) => this.token = token);
+    .subscribe((token: Token) => this.token = token);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPlayers();
   }
 
-  getPlayers() {
+  getPlayers(): void {
     this.playerService.getPlayers().subscribe(
-      (response) => {
-        console.log(response)
+      (response: HttpSuccessResponse) => {
         this.players = response.data;
       },  
       (err) => {
-        console.log(err)
+        this.helperService.persistAlert("Falha ao mostrar jogadores!");
       }
     );
   }
 
-  deletePlayer(player: any) {
+  deletePlayer(player: Player): void {
     this.playerService.deletePlayer(player)
     .subscribe(
-      (response) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert("Jogador deletado com sucesso!");
         this.getPlayers();
       },
@@ -64,7 +64,7 @@ export class PlayerPage implements OnInit {
     return await modal.present();
   }
 
-  async presentPlayerUpdateModal(player) {
+  async presentPlayerUpdateModal(player: Player) {
     const modal = await this.modalController.create({
       component: PlayerUpdateModalPage,
       componentProps: {
