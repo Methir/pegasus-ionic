@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from './auth/auth.service';
+import { Token } from './shared/interface';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
 
-  token: any = null;
+  token: Token = null;
   authUserSubscription: Subscription;
 
   constructor(
@@ -23,7 +24,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: any) => this.token = token);
+    .subscribe((token: Token) => this.token = token);
 
     this.initializeApp();
   }
