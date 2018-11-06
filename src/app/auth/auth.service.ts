@@ -31,14 +31,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('pegasus_token'));
   }
 
-  createUser(values): Observable<any> {
-    return this.http.post<any>(`${this.helperService.baseUrl}/users`, values);
-  }
-
-  updateUser(values): Observable<any> {
-    return this.http.put<any>(`${this.helperService.baseUrl}/users`, values);
-  }
-
   authenticate(values): Observable<any> {
     return this.http.post<any>(`${this.helperService.baseUrl}/login`, values);
   }
@@ -50,6 +42,18 @@ export class AuthService {
 
   getUsers(): Observable<any> {
     return this.http.get<any>(`${this.helperService.baseUrl}/users`);
+  }
+
+  createUser(user): Observable<any> {
+    return this.http.post<any>(`${this.helperService.baseUrl}/users`, user);
+  }
+
+  updateUser(user): Observable<any> {
+    return this.http.put<any>(`${this.helperService.baseUrl}/users`, user);
+  }
+
+  deleteUser(user): Observable<any> {
+    return this.http.delete<any>(`${this.helperService.baseUrl}/users/${user.nick}`);
   }
 
 }

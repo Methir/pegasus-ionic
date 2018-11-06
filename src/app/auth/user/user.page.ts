@@ -1,3 +1,4 @@
+import { HelperService } from './../../shared/helper.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
@@ -16,7 +17,8 @@ export class UserPage implements OnInit {
   users: any;
 
   constructor(private authService: AuthService,
-              private modalController: ModalController) {
+              private modalController: ModalController,
+              private helperService: HelperService) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
   } 
@@ -34,6 +36,19 @@ export class UserPage implements OnInit {
       },
       (err: any) => {
         console.log(err);
+      }
+    );
+  }
+
+  deleteUser(user: any) {
+    this.authService.deleteUser(user)
+    .subscribe(
+      (response) => {
+        this.helperService.persistAlert("Usuário deletado com sucesso!");
+        this.getUsers();
+      },
+      (err) => {
+        this.helperService.persistAlert("Falha ao deletar usuário!");
       }
     );
   }
