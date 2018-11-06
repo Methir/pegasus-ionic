@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 
 import { HelperService } from './../../../shared/helper.service';
 import { UserService } from '../user.service';
+import { User, HttpSuccessResponse } from '../../../shared/interface';
 
 @Component({
   selector: 'app-user-create-modal',
@@ -50,11 +51,10 @@ export class UserCreateModalPage implements OnInit {
     }
   }
 
-  createUser(values) {
-    console.log(values);
-    this.userService.createUser(values)
+  createUser(user: User) {
+    this.userService.createUser(user)
     .subscribe( 
-      (response: any) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert('Usuário cadastrado com sucesso');
         this.dismiss();
       },

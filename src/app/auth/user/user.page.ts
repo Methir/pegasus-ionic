@@ -8,6 +8,7 @@ import { UserUpdateModalPage } from './user-update-modal/user-update-modal.page'
 import { HelperService } from './../../shared/helper.service';
 import { UserCreateModalPage } from './user-create-modal/user-create-modal.page';
 import { UserService } from './user.service';
+import { User, Token, HttpSuccessResponse } from '../../shared/interface';
 
 @Component({ 
   selector: 'app-user',
@@ -15,16 +16,16 @@ import { UserService } from './user.service';
 })
 export class UserPage implements OnInit {
   
-  token: any = null;
+  token: Token = null;
   authUserSubscription: Subscription;
-  users: any;
+  users: User[];
 
   constructor(  private userService: UserService,
                 private authService: AuthService,
                 private modalController: ModalController,
                 private helperService: HelperService  ) {
     this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: any) => this.token = token);
+    .subscribe((token: Token) => this.token = token);
   } 
 
   ngOnInit() {
@@ -34,8 +35,7 @@ export class UserPage implements OnInit {
   getUsers() {
     this.userService.getUsers()
     .subscribe(
-      (response: any) => {
-        console.log(response);
+      (response: HttpSuccessResponse) => {
         this.users = response.data;
       },
       (err: any) => {
@@ -44,7 +44,7 @@ export class UserPage implements OnInit {
     );
   }
 
-  deleteUser(user: any) {
+  deleteUser(user: User) {
     this.userService.deleteUser(user)
     .subscribe(
       (response) => {
@@ -65,7 +65,7 @@ export class UserPage implements OnInit {
     return await modal.present();
   }
 
-  async presentUpdateUserModal(user) {
+  async presentUpdateUserModal(user: User) {
     const modal = await this.modalController.create({
       component: UserUpdateModalPage,
       componentProps: {

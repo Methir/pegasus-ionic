@@ -4,6 +4,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../auth.service';
+import { Token } from '../../shared/interface';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
     ): Observable<HttpEvent<any>> {
         
         const authProvider: AuthService = this.injector.get(AuthService);
-        let token: any = authProvider.authUser.getValue();
+        let token: Token = authProvider.authUser.getValue();
         //console.log(`token interceptado: ${token}`);
         if(token){
             req = req.clone({

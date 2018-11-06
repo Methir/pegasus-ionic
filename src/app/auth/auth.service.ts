@@ -4,14 +4,15 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { HelperService } from '../shared/helper.service';
+import { HttpSuccessResponse, Token } from '../shared/interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public authUser: BehaviorSubject<any>; 
-  public seeAuthUser: Observable<any>; 
+  public authUser: BehaviorSubject<Token>; 
+  public seeAuthUser: Observable<Token>; 
 
   constructor(  private http: HttpClient,
                 private helperService: HelperService  ) { 
@@ -19,11 +20,11 @@ export class AuthService {
     this.seeAuthUser = this.authUser.asObservable(); 
   }
 
-  setToken(token: any): void {
+  setToken(token: Token): void {
     localStorage.setItem('pegasus_token', JSON.stringify(token));
   }
 
-  getToken() {
+  getToken(): Token {
     let token = localStorage.getItem('pegasus_token');
     if (!token) {
       return null;
@@ -31,8 +32,8 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('pegasus_token'));
   }
 
-  authenticate(values): Observable<any> {
-    return this.http.post<any>(`${this.helperService.baseUrl}/login`, values);
+  authenticate(values): Observable<HttpSuccessResponse> {
+    return this.http.post<HttpSuccessResponse>(`${this.helperService.baseUrl}/login`, values);
   }
 
   logout(): void {

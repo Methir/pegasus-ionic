@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from './../auth.service';
 import { HelperService } from '../../shared/helper.service';
+import { HttpSuccessResponse } from '../../shared/interface';
 
 @Component({
   selector: 'app-login',
@@ -45,14 +46,12 @@ export class LoginPage implements OnInit {
     console.log(values);
     this.authService.authenticate(values)
     .subscribe(
-      (response: any) => {
-        console.log(response);
+      (response: HttpSuccessResponse) => {
         this.authService.setToken(response.data);
         this.authService.authUser.next(response.data);
         this.router.navigate(['game']);
       },
       (err: any) => {
-        console.log(err);
         this.helperService.persistAlert('Erro ao tentar acessar o sistema. Veja se errou sua senha, se não deu muito ruim. xD');
       }  
     )

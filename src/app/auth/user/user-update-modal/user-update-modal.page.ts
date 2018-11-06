@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 
 import { HelperService } from './../../../shared/helper.service';
 import { UserService } from '../user.service';
+import { User, HttpSuccessResponse } from '../../../shared/interface';
 
 @Component({ 
   selector: 'app-user-update-modal',
@@ -12,7 +13,7 @@ import { UserService } from '../user.service';
 })
 export class UserUpdateModalPage implements OnInit {
 
-  user: any;
+  user: User;
   forms: FormGroup;
 
   constructor(  private modalController: ModalController,
@@ -51,11 +52,10 @@ export class UserUpdateModalPage implements OnInit {
     }
   }
 
-  updateUser(values) {
-    console.log(values);
-    this.userService.updateUser(values)
+  updateUser(user: User) {
+    this.userService.updateUser(user)
     .subscribe( 
-      (response: any) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert('Usuário atualizado com sucesso');
         this.dismiss();
       },
