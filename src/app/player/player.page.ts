@@ -1,3 +1,4 @@
+import { HelperService } from './../shared/helper.service';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from './../auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -18,6 +19,7 @@ export class PlayerPage implements OnInit {
 
   constructor(private playerService: PlayerService,
               private authService: AuthService, 
+              private helperService: HelperService,
               private modalController: ModalController  ) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
@@ -35,6 +37,19 @@ export class PlayerPage implements OnInit {
       },  
       (err) => {
         console.log(err)
+      }
+    );
+  }
+
+  deletePlayer(player: any) {
+    this.playerService.deletePlayer(player)
+    .subscribe(
+      (response) => {
+        this.helperService.persistAlert("Jogador deletado com sucesso!");
+        this.getPlayers();
+      },
+      (err) => {
+        this.helperService.persistAlert("Falha ao deletar jogador!");
       }
     );
   }

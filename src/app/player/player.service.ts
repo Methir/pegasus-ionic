@@ -15,12 +15,16 @@ export class PlayerService {
     return this.http.get(`${this.helperService.baseUrl}/players`)
   }
 
-  createPlayer(values): Observable<any> {
-    return this.http.post<any>(`${this.helperService.baseUrl}/players`, values);
+  createPlayer(player): Observable<any> {
+    return this.http.post<any>(`${this.helperService.baseUrl}/players`, player);
   }
 
-  updatePlayer(values): Observable<any> {
-    return this.http.put<any>(`${this.helperService.baseUrl}/players`, values);
+  updatePlayer(player): Observable<any> {
+    return this.http.put<any>(`${this.helperService.baseUrl}/players`, player);
+  }
+
+  deletePlayer(player): Observable<any> {
+    return this.http.delete<any>(`${this.helperService.baseUrl}/players/${player.nick}`);
   }
 
 }
