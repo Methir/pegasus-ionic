@@ -39,21 +39,5 @@ export class AuthService {
     localStorage.removeItem('bagda_token');
     this.authUser.next(null);
   }
-
-  getUsers(): Observable<any> {
-    return this.http.get<any>(`${this.helperService.baseUrl}/users`);
-  }
-
-  createUser(user): Observable<any> {
-    return this.http.post<any>(`${this.helperService.baseUrl}/users`, user);
-  }
-
-  updateUser(user): Observable<any> {
-    return this.http.put<any>(`${this.helperService.baseUrl}/users`, user);
-  }
-
-  deleteUser(user): Observable<any> {
-    return this.http.delete<any>(`${this.helperService.baseUrl}/users/${user.nick}`);
-  }
-
+  
 }

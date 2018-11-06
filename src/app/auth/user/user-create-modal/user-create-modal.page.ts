@@ -3,19 +3,19 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-import { AuthService } from '../auth.service';
-import { HelperService } from './../../shared/helper.service';
+import { HelperService } from './../../../shared/helper.service';
+import { UserService } from '../user.service';
 
-@Component({ 
-  selector: 'app-register',
-  templateUrl: './register.page.html',
+@Component({
+  selector: 'app-user-create-modal',
+  templateUrl: './user-create-modal.page.html',
 })
-export class RegisterPage implements OnInit {
+export class UserCreateModalPage implements OnInit {
 
   forms: FormGroup;
 
   constructor(  private modalController: ModalController,
-                private authService: AuthService,
+                private userService: UserService,
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService ) { }
 
@@ -52,7 +52,7 @@ export class RegisterPage implements OnInit {
 
   createUser(values) {
     console.log(values);
-    this.authService.createUser(values)
+    this.userService.createUser(values)
     .subscribe( 
       (response: any) => {
         this.helperService.persistAlert('Usuário cadastrado com sucesso');

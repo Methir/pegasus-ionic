@@ -5,9 +5,6 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, Htt
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { AuthService } from '../auth.service';
-
-
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 

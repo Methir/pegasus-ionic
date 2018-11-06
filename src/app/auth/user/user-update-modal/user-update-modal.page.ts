@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-import { AuthService } from '../../auth.service';
 import { HelperService } from './../../../shared/helper.service';
+import { UserService } from '../user.service';
 
 @Component({ 
   selector: 'app-user-update-modal',
@@ -16,7 +16,7 @@ export class UserUpdateModalPage implements OnInit {
   forms: FormGroup;
 
   constructor(  private modalController: ModalController,
-                private authService: AuthService,
+                private userService: UserService,
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService ) { }
 
@@ -53,7 +53,7 @@ export class UserUpdateModalPage implements OnInit {
 
   updateUser(values) {
     console.log(values);
-    this.authService.updateUser(values)
+    this.userService.updateUser(values)
     .subscribe( 
       (response: any) => {
         this.helperService.persistAlert('Usuário atualizado com sucesso');

@@ -6,9 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login/login.page';
-import { RegisterPage } from './register/register.page';
 import { UserPage } from './user/user.page';
 import { UserUpdateModalPage } from './user/user-update-modal/user-update-modal.page';
+import { UserCreateModalPage } from './user/user-create-modal/user-create-modal.page';
 
 const routes: Routes = [
   {
@@ -29,13 +29,13 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    RegisterPage,
+    UserCreateModalPage,
     UserUpdateModalPage
   ],
   declarations: [
     LoginPage,
     UserPage,
-    RegisterPage,
+    UserCreateModalPage,
     UserUpdateModalPage
   ]
 })

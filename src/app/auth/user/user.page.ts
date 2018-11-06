@@ -4,9 +4,10 @@ import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth.service';
-import { RegisterPage } from '../register/register.page';
 import { UserUpdateModalPage } from './user-update-modal/user-update-modal.page';
 import { HelperService } from './../../shared/helper.service';
+import { UserCreateModalPage } from './user-create-modal/user-create-modal.page';
+import { UserService } from './user.service';
 
 @Component({ 
   selector: 'app-user',
@@ -18,7 +19,8 @@ export class UserPage implements OnInit {
   authUserSubscription: Subscription;
   users: any;
 
-  constructor(  private authService: AuthService,
+  constructor(  private userService: UserService,
+                private authService: AuthService,
                 private modalController: ModalController,
                 private helperService: HelperService  ) {
     this.authUserSubscription = this.authService.seeAuthUser
@@ -30,7 +32,7 @@ export class UserPage implements OnInit {
   }
 
   getUsers() {
-    this.authService.getUsers()
+    this.userService.getUsers()
     .subscribe(
       (response: any) => {
         console.log(response);
@@ -43,7 +45,7 @@ export class UserPage implements OnInit {
   }
 
   deleteUser(user: any) {
-    this.authService.deleteUser(user)
+    this.userService.deleteUser(user)
     .subscribe(
       (response) => {
         this.helperService.persistAlert("Usuário deletado com sucesso!");
@@ -57,7 +59,7 @@ export class UserPage implements OnInit {
 
   async presentCreateUserModal() {
     const modal = await this.modalController.create({
-      component: RegisterPage
+      component: UserCreateModalPage
     });
     modal.onWillDismiss().then(() => this.getUsers());
     return await modal.present();
