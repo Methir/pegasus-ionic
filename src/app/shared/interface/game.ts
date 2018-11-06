@@ -1,4 +1,4 @@
-export interface game {
+export interface Game {
     player1: string,
     deck1: string,
     player2: string,
