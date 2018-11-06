@@ -1,8 +1,10 @@
-import { HelperService } from './../../shared/helper.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 import { ModalController } from '@ionic/angular';
+
 import { PlayerService } from '../player.service';
+import { HelperService } from './../../shared/helper.service';
 
 @Component({  
   selector: 'app-player-create-modal',
@@ -12,10 +14,10 @@ export class PlayerCreateModalPage implements OnInit {
 
   forms: FormGroup;
 
-  constructor(private modalController: ModalController,
-              private playerService: PlayerService,
-              private formBuilder: FormBuilder, 
-              private helperService: HelperService  ) { }
+  constructor(  private modalController: ModalController,
+                private playerService: PlayerService,
+                private formBuilder: FormBuilder, 
+                private helperService: HelperService  ) { }
 
   ngOnInit() {
     this.forms = this.formBuilder.group({
