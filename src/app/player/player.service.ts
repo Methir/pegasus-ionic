@@ -19,4 +19,8 @@ export class PlayerService {
     return this.http.post<any>(`${this.helperService.baseUrl}/players`, values);
   }
 
+  updatePlayer(values): Observable<any> {
+    return this.http.put<any>(`${this.helperService.baseUrl}/players`, values);
+  }
+
 }

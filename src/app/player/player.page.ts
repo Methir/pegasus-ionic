@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from './player.service';
 import { PlayerCreateModalPage } from './player-create-modal/player-create-modal.page';
+import { PlayerUpdateModalPage } from './player-update-modal/player-update-modal.page';
 
 @Component({
   selector: 'app-player',
@@ -23,6 +24,10 @@ export class PlayerPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getPlayers();
+  }
+
+  getPlayers() {
     this.playerService.getPlayers().subscribe(
       (response) => {
         console.log(response)
@@ -31,13 +36,25 @@ export class PlayerPage implements OnInit {
       (err) => {
         console.log(err)
       }
-    )
+    );
   }
 
   async presentPlayerCreateModal() {
     const modal = await this.modalController.create({
       component: PlayerCreateModalPage
     });
+    modal.onWillDismiss().then(() => this.getPlayers());
+    return await modal.present();
+  }
+
+  async presentPlayerUpdateModal(player) {
+    const modal = await this.modalController.create({
+      component: PlayerUpdateModalPage,
+      componentProps: {
+        player: player
+      }
+    });
+    modal.onWillDismiss().then(() => this.getPlayers());
     return await modal.present();
   }
 

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header text-center>
+      <ion-card-title>Criar Jogador</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()"> 
+        <ion-item>
+          <ion-label position="floating">Nome Jogador</ion-label>
+          <ion-input type="text" formControlName="nick" readonly></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nome Completo</ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Estrelas</ion-label>
+          <ion-input type="number" formControlName="stars"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full">Enviar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

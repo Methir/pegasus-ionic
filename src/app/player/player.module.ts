@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PlayerPage } from './player.page';
 import { PlayerCreateModalPage } from './player-create-modal/player-create-modal.page';
+import { PlayerUpdateModalPage } from './player-update-modal/player-update-modal.page';
 
 const routes: Routes = [
   {
@@ -23,11 +24,13 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   entryComponents: [
-    PlayerCreateModalPage
+    PlayerCreateModalPage,
+    PlayerUpdateModalPage
   ],
   declarations: [
     PlayerPage,
-    PlayerCreateModalPage
+    PlayerCreateModalPage,
+    PlayerUpdateModalPage
   ]
 })
 export class PlayerPageModule {}
