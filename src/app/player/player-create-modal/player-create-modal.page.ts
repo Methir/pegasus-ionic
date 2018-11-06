@@ -49,7 +49,8 @@ export class PlayerCreateModalPage implements OnInit {
     this.playerService.createPlayer(player)
     .subscribe(
       (response: HttpSuccessResponse) => {
-        this.helperService.persistAlert('Jodador cadastrado com sucesso');
+        this.dismiss();
+        this.helperService.persistAlert('Jodador cadastrado com sucesso!');
       },
       (err) => {
         this.helperService.persistAlert('Erro ao tentar cadastrar jodador!');
