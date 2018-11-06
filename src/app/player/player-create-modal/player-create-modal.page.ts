@@ -33,7 +33,9 @@ export class PlayerCreateModalPage implements OnInit {
         Validators.maxLength(255),
       ] ],
       stars: [ 2, [
-        Validators.required
+        Validators.required,
+        Validators.min(0),
+        Validators.max(100)
       ] ]
     });
   }
@@ -50,12 +52,10 @@ export class PlayerCreateModalPage implements OnInit {
     this.playerService.createPlayer(player)
     .subscribe(
       (response: HttpSuccessResponse) => {
-        this.dismiss();
         this.helperService.persistAlert('Jodador cadastrado com sucesso!');
+        this.dismiss();
       },
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert('Erro ao tentar cadastrar jodador!');
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 

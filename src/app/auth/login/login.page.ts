@@ -51,9 +51,7 @@ export class LoginPage implements OnInit {
         this.authService.authUser.next(response.data);
         this.router.navigate(['game']);
       },
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert('Erro ao tentar acessar o sistema. Veja se errou sua senha, se não deu muito ruim. xD');
-      }  
+      (err: HttpErrorResponse) => { }  
     )
   }
 

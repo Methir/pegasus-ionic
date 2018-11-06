@@ -5,6 +5,9 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse, Htt
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { AuthService } from '../auth.service';
+import { HelperService } from '../../shared/helper.service';
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
@@ -24,14 +27,29 @@ export class AuthInterceptor implements HttpInterceptor {
             },
             (error: HttpErrorResponse) => {
                 console.log('---> interceptor erro:', error);
-                /*if (error instanceof HttpErrorResponse) {
+                if (error instanceof HttpErrorResponse) {
                     const authService = this.injector.get(AuthService);
-                    if (error.status >= 400 && error.status <= 402) {
-                        authService.logout();
-                    } else if (error.status == 403) {
-                        authService.forbiddenError();
+                    const helperService = this.injector.get(HelperService);
+
+                    switch (error.status){
+                        case 0 : 
+                            helperService.persistAlert("Favor verificar a conexão!");
+                            break;
+                        case 400 : 
+                            helperService.persistAlert("Requisição incorreta!");
+                            break;
+                        case 401 :
+                            helperService.persistAlert("Credenciais de usuário inválidas!");
+                            authService.logout();
+                            break;
+                        case 422 :
+                            helperService.persistAlert(error.error.message);
+                            break;
+                        case 500 :
+                            helperService.persistAlert("Error ao conectar com o servidor!");
+                            break;
                     }
-                }*/
+                }
             })
         );
     }

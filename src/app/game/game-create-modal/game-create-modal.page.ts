@@ -23,12 +23,10 @@ export class GameCreateModalPage implements OnInit {
     this.gameService.resetGames()
     .subscribe(
       (response: HttpSuccessResponse) => {
-        this.dismiss();
         this.helperService.persistAlert("Jogos resetados com sucesso!");
+        this.dismiss();
       },
-      (err: HttpErrorResponse) => { 
-        this.helperService.persistAlert("Erro ao tentar resetar os jogos!");
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 

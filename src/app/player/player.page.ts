@@ -38,9 +38,7 @@ export class PlayerPage implements OnInit {
       (response: HttpSuccessResponse) => {
         this.players = response.data;
       },  
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert("Falha ao mostrar jogadores!");
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 
@@ -51,9 +49,7 @@ export class PlayerPage implements OnInit {
         this.helperService.persistAlert("Jogador deletado com sucesso!");
         this.getPlayers();
       },
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert("Falha ao deletar jogador!");
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 

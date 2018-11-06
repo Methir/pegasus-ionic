@@ -39,9 +39,7 @@ export class UserPage implements OnInit {
       (response: HttpSuccessResponse) => {
         this.users = response.data;
       },
-      (err: HttpErrorResponse) => {
-        console.log(err);
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 
@@ -52,9 +50,7 @@ export class UserPage implements OnInit {
         this.helperService.persistAlert("Usuário deletado com sucesso!");
         this.getUsers();
       },
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert("Falha ao deletar usuário!");
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 

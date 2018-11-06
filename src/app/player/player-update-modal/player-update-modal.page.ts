@@ -53,12 +53,10 @@ export class PlayerUpdateModalPage implements OnInit {
     this.playerService.updatePlayer(player)
     .subscribe(
       (response: HttpSuccessResponse) => {
-        this.dismiss();
         this.helperService.persistAlert('Jodador atualizado com sucesso!');
+        this.dismiss();
       },
-      (err: HttpErrorResponse) => {
-        this.helperService.persistAlert('Erro ao tentar atualizar jodador!');
-      }
+      (err: HttpErrorResponse) => { }
     );
   }
 
