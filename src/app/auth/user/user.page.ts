@@ -28,11 +28,11 @@ export class UserPage implements OnInit {
     .subscribe((token: Token) => this.token = token);
   } 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
   }
 
-  getUsers() {
+  getUsers(): void {
     this.userService.getUsers()
     .subscribe(
       (response: HttpSuccessResponse) => {
@@ -44,7 +44,7 @@ export class UserPage implements OnInit {
     );
   }
 
-  deleteUser(user: User) {
+  deleteUser(user: User): void {
     this.userService.deleteUser(user)
     .subscribe(
       (response) => {

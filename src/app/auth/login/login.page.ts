@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
                 private router: Router,
                 private helperService: HelperService ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = this.formBuilder.group({
       nick: [ null, [
         Validators.required,
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.forms.invalid) {
       this.helperService.persistAlert('Erro no formulário!');
     } else {
@@ -42,8 +42,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  authenticate(values) {
-    console.log(values);
+  authenticate(values): void {
     this.authService.authenticate(values)
     .subscribe(
       (response: HttpSuccessResponse) => {

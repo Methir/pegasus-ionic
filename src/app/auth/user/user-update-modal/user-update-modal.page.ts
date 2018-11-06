@@ -21,7 +21,7 @@ export class UserUpdateModalPage implements OnInit {
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = this.formBuilder.group({
       nick: [ this.user.nick, [
         Validators.required,
@@ -44,7 +44,7 @@ export class UserUpdateModalPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.forms.invalid) {
       this.helperService.persistAlert('Erro no formulário!');
     } else {
@@ -52,7 +52,7 @@ export class UserUpdateModalPage implements OnInit {
     }
   }
 
-  updateUser(user: User) {
+  updateUser(user: User): void {
     this.userService.updateUser(user)
     .subscribe( 
       (response: HttpSuccessResponse) => {
@@ -65,7 +65,7 @@ export class UserUpdateModalPage implements OnInit {
     )
   }
 
-  dismiss() {
+  dismiss(): void {
     this.modalController.dismiss();
   }
 

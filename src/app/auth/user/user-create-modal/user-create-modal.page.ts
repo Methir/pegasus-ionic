@@ -20,7 +20,7 @@ export class UserCreateModalPage implements OnInit {
                 private formBuilder: FormBuilder, 
                 private helperService: HelperService ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.forms = this.formBuilder.group({
       nick: [ null, [
         Validators.required,
@@ -43,7 +43,7 @@ export class UserCreateModalPage implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.forms.invalid) {
       this.helperService.persistAlert('Erro no formulário!');
     } else {
@@ -51,7 +51,7 @@ export class UserCreateModalPage implements OnInit {
     }
   }
 
-  createUser(user: User) {
+  createUser(user: User): void {
     this.userService.createUser(user)
     .subscribe( 
       (response: HttpSuccessResponse) => {
@@ -64,7 +64,7 @@ export class UserCreateModalPage implements OnInit {
     )
   }
 
-  dismiss() {
+  dismiss(): void {
     this.modalController.dismiss();
   }
 
