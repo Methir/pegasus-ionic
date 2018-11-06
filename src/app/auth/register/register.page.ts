@@ -1,8 +1,10 @@
-import { HelperService } from './../../shared/helper.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 import { ModalController } from '@ionic/angular';
+
 import { AuthService } from '../auth.service';
+import { HelperService } from './../../shared/helper.service';
 
 @Component({ 
   selector: 'app-register',

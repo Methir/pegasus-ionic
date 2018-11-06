@@ -1,9 +1,10 @@
-import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HelperService } from '../../shared/helper.service';
 import { Router } from '@angular/router';
- 
+
+import { AuthService } from './../auth.service';
+import { HelperService } from '../../shared/helper.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,10 +13,10 @@ export class LoginPage implements OnInit {
 
   forms: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              private authService: AuthService,
-              private router: Router,
-              private helperService: HelperService ) { }
+  constructor(  private formBuilder: FormBuilder,
+                private authService: AuthService,
+                private router: Router,
+                private helperService: HelperService ) { }
 
   ngOnInit() {
     this.forms = this.formBuilder.group({

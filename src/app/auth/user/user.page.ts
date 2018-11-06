@@ -1,10 +1,12 @@
-import { HelperService } from './../../shared/helper.service';
-import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+
 import { ModalController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
+
+import { AuthService } from '../auth.service';
 import { RegisterPage } from '../register/register.page';
 import { UserUpdateModalPage } from './user-update-modal/user-update-modal.page';
+import { HelperService } from './../../shared/helper.service';
 
 @Component({ 
   selector: 'app-user',
@@ -16,9 +18,9 @@ export class UserPage implements OnInit {
   authUserSubscription: Subscription;
   users: any;
 
-  constructor(private authService: AuthService,
-              private modalController: ModalController,
-              private helperService: HelperService) {
+  constructor(  private authService: AuthService,
+                private modalController: ModalController,
+                private helperService: HelperService  ) {
     this.authUserSubscription = this.authService.seeAuthUser
     .subscribe((token: any) => this.token = token);
   } 

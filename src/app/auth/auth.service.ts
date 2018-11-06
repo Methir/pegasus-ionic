@@ -13,8 +13,8 @@ export class AuthService {
   public authUser: BehaviorSubject<any>; 
   public seeAuthUser: Observable<any>; 
 
-  constructor(private http: HttpClient,
-              private helperService: HelperService  ) { 
+  constructor(  private http: HttpClient,
+                private helperService: HelperService  ) { 
     this.authUser = new BehaviorSubject(this.getToken());
     this.seeAuthUser = this.authUser.asObservable(); 
   }
