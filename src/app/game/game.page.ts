@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { GameCreateModalPage } from './game-create-modal/game-create-modal.page';
 import { GameService } from './game.service';
 import { AuthService } from './../auth/auth.service';
+import { Token, Game, HttpSuccessResponse } from '../shared/interface';
 
 @Component({
   selector: 'app-game',
@@ -13,27 +14,23 @@ import { AuthService } from './../auth/auth.service';
 })
 export class GamePage implements OnInit {
 
-  token: any = null;
+  token: Token = null;
   authUserSubscription: Subscription;
-
-  games: any[];
+  games: Game[];
 
   constructor(  private gameService: GameService,
                 private authService: AuthService,
                 private modalController: ModalController  ) {
     this.authUserSubscription = this.authService.seeAuthUser
-    .subscribe((token: any) => this.token = token);
+    .subscribe((token: Token) => this.token = token);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.gameService.getGames().subscribe(
-      (response) => {
-        console.log(response)
+      (response: HttpSuccessResponse) => {
         this.games = response.data;
       },  
-      (err) => {
-        console.log(err)
-      }
+      (err) => { }
     )
   }
   

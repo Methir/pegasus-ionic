@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 
 import { HelperService } from './../../shared/helper.service';
 import { GameService } from './../game.service';
+import { HttpSuccessResponse } from '../../shared/interface';
 
 @Component({  
   selector: 'app-game-create-modal',
@@ -15,12 +16,12 @@ export class GameCreateModalPage implements OnInit {
                 private helperService: HelperService,
                 private gameService: GameService  ) { }
 
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  resetGames() {
+  resetGames(): void {
     this.gameService.resetGames()
     .subscribe(
-      (response) => {
+      (response: HttpSuccessResponse) => {
         this.helperService.persistAlert("Jogos resetados com sucesso!");
       },
       (err) => { 
@@ -29,7 +30,7 @@ export class GameCreateModalPage implements OnInit {
     );
   }
 
-  dismiss() {
+  dismiss(): void {
     this.modalController.dismiss();
   }
 
