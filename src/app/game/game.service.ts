@@ -14,4 +14,9 @@ export class GameService {
   getGames(): Observable<any>{
     return this.http.get(`${this.helperService.baseUrl}/games`);
   }
+
+  resetGames(): Observable<any>{
+    return this.http.get(`${this.helperService.baseUrl}/games/reset`);
+  }
+
 }
