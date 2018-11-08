@@ -15,7 +15,40 @@
       <ion-card-title>Criar Jogo</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button expand="full">Enviar</ion-button>
+      <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label>Jogador 1</ion-label>
+          <ion-select formControlName="player1" interface="popover" placeholder="Selecione um Jogador">
+              <ion-select-option *ngFor="let player of players" [value]="player.nick">{{player.nick}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Deck 1</ion-label>
+          <ion-input type="text" formControlName="deck1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Jogador 2</ion-label>
+          <ion-select formControlName="player2" interface="popover" placeholder="Selecione um Jogador">
+            <ion-select-option *ngFor="let player of players" [value]="player.nick">{{player.nick}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Deck 2</ion-label>
+          <ion-input type="text" formControlName="deck2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Vencedor</ion-label>
+          <ion-select formControlName="winner" interface="popover" placeholder="Selecione um vencedor">
+            <ion-select-option *ngIf="forms.value['player1']" [value]="forms.value['player1']">{{forms.value['player1']}}</ion-select-option>
+            <ion-select-option *ngIf="forms.value['player2']" [value]="forms.value['player2']">{{forms.value['player2']}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="fixed">Estrelas</ion-label>
+          <ion-input type="number" formControlName="stars"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="full" [disabled]="forms.invalid">Enviar</ion-button>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>
